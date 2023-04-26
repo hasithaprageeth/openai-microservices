@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from config import SQLConfig
-from common.authentication import requires_auth
+from authentication import requires_auth
 from openai_chat_client import get_chat_response
 from models import db
 
@@ -43,4 +43,4 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run()

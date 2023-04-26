@@ -1,8 +1,5 @@
 FROM python:3.9-slim-buster
 
-# Install dependencies
-RUN apt-get update && apt-get install -y build-essential libpq-dev
-
 # Set work directory
 WORKDIR /app
 
@@ -13,8 +10,8 @@ RUN pip install -r requirements.txt
 # Copy source code
 COPY . .
 
-# Expose port
-EXPOSE 5000
+# Expose port 8001 for Gunicorn
+EXPOSE 80
 
-# Run app
-CMD ["python", "app.py"]
+# Run the application using Gunicorn
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8000"]
