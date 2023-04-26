@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-service
+  labels:
+    app: chat-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chat-service
+  template:
+    metadata:
+      labels:
+        app: chat-service
+    spec:
+      containers:
+        - name: chat-service
+          image: hasitha2021/chat-service
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: openai-api-key
+            - name: MYSQL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: database_host
+            - name: MYSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: database_port
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: database_user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: database_pwd
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: database
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-microservices-secrets
+                  key: api-key
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: chat-service
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP

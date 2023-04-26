@@ -1,0 +1,60 @@
+version: "3"
+services:
+  chat-service:
+    build: ./chat-service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://db_user:db_pass@database:5432/chat_db
+      - OPENAI_API_KEY="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"
+      - SECRET_KEY="a&9X5R4^wsyjKf28GhPxz#N#v6C$L@!"
+
+  edit-service:
+    build: ./edit-service
+    ports:
+      - "8001:8001"
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://db_user:db_pass@database:5432/edit_db
+      - OPENAI_API_KEY="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"
+      - SECRET_KEY="a&9X5R4^wsyjKf28GhPxz#N#v6C$L@!"
+
+  completions-service:
+    build: ./completions-service
+    ports:
+      - "8002:8002"
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://db_user:db_pass@database:5432/completions_db
+      - OPENAI_API_KEY="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"
+      - SECRET_KEY="a&9X5R4^wsyjKf28GhPxz#N#v6C$L@!"
+
+  image-service:
+    build: ./image-service
+    ports:
+      - "8003:8003"
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://db_user:db_pass@database:5432/image_db
+      - OPENAI_API_KEY="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"
+      - SECRET_KEY="a&9X5R4^wsyjKf28GhPxz#N#v6C$L@!"
+
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=db_user
+      - POSTGRES_PASSWORD=db_pass
+      - POSTGRES_DB=chat_db
+      - POSTGRES_DB=edit_db
+      - POSTGRES_DB=completions_db
+      - POSTGRES_DB=image_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
