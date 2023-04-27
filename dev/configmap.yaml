@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openai-microservices-configmap
+data:
+  application.properties: |-
+    database_host=database-1.c1hflofbzezz.eu-west-2.rds.amazonaws.com
+    database_port=3306
+    database_user=admin
+    chat_database=chat_service_db_dev
+    edit_database=edit_service_db_dev
+    completion_database=completion_service_db_dev
+    image_database=image_service_db_dev

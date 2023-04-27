@@ -5,34 +5,41 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: openai-service-dev.com
+  - host: openai-service-prod.com
     http:
       paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: chat-service
+              port:
+                number: 9291
         - path: /chat
           pathType: Prefix
           backend:
             service:
               name: chat-service
               port:
-                number: 9091
+                number: 9291
         - path: /edit
           pathType: Prefix
           backend:
             service:
               name: edit-service
               port:
-                number: 9092
+                number: 9292
         - path: /completions
           pathType: Prefix
           backend:
             service:
-              name: completions-service
+              name: completion-service
               port:
-                number: 9093
+                number: 9293
         - path: /image
           pathType: Prefix
           backend:
             service:
               name: image-service
               port:
-                number: 9094
+                number: 9294

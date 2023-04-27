@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: completion-service
+  name: image-service
   labels:
-    app: completion-service
+    app: image-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: completion-service
+      app: image-service
   template:
     metadata:
       labels:
-        app: completion-service
+        app: image-service
     spec:
       containers:
         - name: edit-service
-          image: hasitha2021/completion-service
+          image: hasitha2021/image-service:stage-latest
           ports:
             - containerPort: 8000
           env:
@@ -27,18 +27,18 @@ spec:
                   key: openai-api-key
             - name: MYSQL_HOST
               valueFrom:
-                secretKeyRef:
-                  name: openai-microservices-secrets
+                configMapRef:
+                  name: openai-microservices-configmap
                   key: database_host
             - name: MYSQL_PORT
               valueFrom:
-                secretKeyRef:
-                  name: openai-microservices-secrets
+                configMapRef:
+                  name: openai-microservices-configmap
                   key: database_port
             - name: MYSQL_USER
               valueFrom:
-                secretKeyRef:
-                  name: openai-microservices-secrets
+                configMapRef:
+                  name: openai-microservices-configmap
                   key: database_user
             - name: MYSQL_PASSWORD
               valueFrom:
@@ -47,9 +47,9 @@ spec:
                   key: database_pwd
             - name: MYSQL_DATABASE
               valueFrom:
-                secretKeyRef:
-                  name: openai-microservices-secrets
-                  key: completion_database
+                configMapRef:
+                  name: openai-microservices-configmap
+                  key: image_database
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
@@ -60,12 +60,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: completion-service
+  name: image-service
 spec:
   type: ClusterIP
   selector:
-    app: completion-service
+    app: image-service
   ports:
-  - port: 21003
+  - port: 9194
     targetPort: 8000
     protocol: TCP
