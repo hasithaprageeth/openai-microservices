@@ -3,7 +3,7 @@ import config
 from chat_response import ChatResponse
 from models import Chat
 
-openai.api_key = config.OPENAI_API_KEY
+openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
 model_engine = config.MODEL_ENGINE
 
 

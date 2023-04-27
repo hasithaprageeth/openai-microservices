@@ -1,12 +1,13 @@
-import os
 import openai
-from edit_models.edit_response import EditResponse
+import config
+from edit_response import EditResponse
+from models import Edit
 
-openai.api_key = os.environ['OPENAI_API_KEY']
-model_engine = "text-davinci-edit-001"
+openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
+model_engine = config.MODEL_ENGINE
 
 
-def get_edit_response(instruction: str, prompt: str):
+def get_edit_response(instruction: str, prompt: str, session):
     """
         Sends a request to the OpenAI Chat API and returns the edit response.
     """
@@ -15,10 +16,23 @@ def get_edit_response(instruction: str, prompt: str):
         instruction=instruction,
         input=prompt
     )
+
+    # Generate edit model
+    edit = __generate_edit_model(instruction, prompt, response)
+
+    # Save chat to database
+    session.add(edit)
+    session.commit()
+
+    # Return edit response
+    return __prepare_edit_response(edit)
+
+
+def __generate_edit_model(instruction: str, prompt: str, response):
     edited_text = response.choices[0].text.strip()
-    return __prepare_edit_response(prompt, edited_text)
+    return Edit(instruction, prompt, edited_text)
 
 
-def __prepare_edit_response(prompt: str, edited_text: str):
-    response = EditResponse(prompt, edited_text)
-    return response.__dict__
+def __prepare_edit_response(edit: Edit):
+    return EditResponse(edit.prompt, edit.edited_text)
+

@@ -5,14 +5,14 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class Completion(db.Model):
+class Image(db.Model):
     id = db.Column(db.String(40), primary_key=True)
     prompt = db.Column(db.Text)
-    completed_text = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     created_at = db.Column(db.DateTime)
 
-    def __init__(self, prompt, completed_text):
+    def __init__(self, prompt, image_url):
         self.id = f"id_{uuid.uuid4()}"
         self.prompt = prompt
-        self.completed_text = completed_text
+        self.image_url = image_url
         self.created_at = datetime.utcnow()

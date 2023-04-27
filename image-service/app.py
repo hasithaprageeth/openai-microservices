@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from config import SQLConfig
 from authentication import requires_auth
-from openai_edit_client import get_edit_response
+from openai_image_client import get_image_response
 from models import db
 
 app = Flask(__name__)
@@ -14,26 +14,22 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return 'Edit Service is running.'
+    return 'Image Service is running.'
 
 
-@app.route('/edit', methods=['POST'])
+@app.route('/image', methods=['POST'])
 @requires_auth
-def edit():
+def image():
     data = request.get_json()
     try:
-        if not data.get('instruction'):
-            raise ValueError("Please provide a valid value for 'instruction' parameter. "
-                             "The value should not be null or empty.")
         if not data.get('prompt'):
             raise ValueError("Please provide a valid value for 'prompt' parameter. "
                              "The value should not be null or empty.")
-        instruction = data.get('instruction')
         prompt = data.get('prompt')
 
         # create a new database session
         with db.session() as session:
-            response = get_edit_response(instruction, prompt, session)
+            response = get_image_response(prompt, session)
 
         return jsonify(response.__dict__)
     except ValueError as e:
@@ -43,4 +39,4 @@ def edit():
 
 
 if __name__ == '__main__':
-    app.run(port=8002)
+    app.run(port=8000)

@@ -1,9 +1,10 @@
 import jwt
+import config
 from datetime import datetime, timedelta
 from flask import request, jsonify
 from functools import wraps
 
-SECRET_KEY = "a&9X5R4^wsyjKf28GhPxz#N#v6C$L@!"
+SECRET_KEY = config.SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

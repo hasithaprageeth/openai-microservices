@@ -1,12 +1,13 @@
-import os
 import openai
-from completion_models.completion_response import CompletionResponse
+import config
+from completion_response import CompletionResponse
+from models import Completion
 
-openai.api_key = os.environ['OPENAI_API_KEY']
-model_engine = "text-davinci-003"
+openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
+model_engine = config.MODEL_ENGINE
 
 
-def get_completion_response(prompt: str):
+def get_completion_response(prompt: str, session):
     """
         Sends a request to the OpenAI Chat API and returns the completion response.
     """
@@ -14,10 +15,22 @@ def get_completion_response(prompt: str):
         model=model_engine,
         prompt=prompt
     )
+
+    # Generate completion model
+    completion = __generate_completion_model(prompt, response)
+
+    # Save completion to database
+    session.add(completion)
+    session.commit()
+
+    # Return completion response
+    return __prepare_completion_response(completion)
+
+
+def __generate_completion_model(prompt: str, response):
     completed_text = response.choices[0].text.strip()
-    return __prepare_complete_response(prompt, completed_text)
+    return Completion(prompt, completed_text)
 
 
-def __prepare_complete_response(prompt: str, completed_text: str):
-    response = CompletionResponse(prompt, completed_text)
-    return response.__dict__
+def __prepare_completion_response(completion: Completion):
+    return CompletionResponse(completion.prompt, completion.completed_text)
