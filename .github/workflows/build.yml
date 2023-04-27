@@ -5,7 +5,7 @@ on:
     branches:
       - develop
       - stage
-      - master
+      - main
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -28,30 +28,45 @@ jobs:
       id: extract_branch
       run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
 
-    - name: Build and push chat-service image
+    - name: Build and push chat_service image
       uses: docker/build-push-action@v2
       with:
-        context: ./chat-service
+        context: ./chat_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/chat-service:${{ steps.extract_branch.outputs.branch }}-latest
+        tags: ${{ env.DOCKERHUB_USERNAME }}/chat_service:${{ steps.extract_branch.outputs.branch }}-latest
 
-    - name: Build and push edit-service image
-      uses: docker/build-push-action@v2
+    - name: Run tests chat_service
+      uses: docker://python:3.9
       with:
-        context: ./edit-service
-        push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/edit-service:${{ steps.extract_branch.outputs.branch }}-latest
+        entrypoint: /bin/sh
+        args: -c "pip install pytest && pytest /path/to/tests"
 
-    - name: Build and push completions-service image
+    - name: Build and push edit_service image
       uses: docker/build-push-action@v2
       with:
-        context: ./completions-service
+        context: ./edit_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/completions-service:${{ steps.extract_branch.outputs.branch }}-latest
+        tags: ${{ env.DOCKERHUB_USERNAME }}/edit_service:${{ steps.extract_branch.outputs.branch }}-latest
 
-    - name: Build and push image-service image
+    - name: Build and push completions_service image
       uses: docker/build-push-action@v2
       with:
-        context: ./image-service
+        context: ./completions_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/image-service:${{ steps.extract_branch.outputs.branch }}-latest
+        tags: ${{ env.DOCKERHUB_USERNAME }}/completions_service:${{ steps.extract_branch.outputs.branch }}-latest
+
+    - name: Build and push image_service image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./image_service
+        push: true
+        tags: ${{ env.DOCKERHUB_USERNAME }}/image_service:${{ steps.extract_branch.outputs.branch }}-latest
+
+    - name: Install additional Python packages
+      run: pip install PyYAML
+
+    - name: Run tests
+      uses: docker://python:3.9
+      with:
+        entrypoint: /bin/sh
+        args: -c "pip install pytest && pytest ./tests"
