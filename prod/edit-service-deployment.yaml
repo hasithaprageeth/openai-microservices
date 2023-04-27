@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: completion-service
+  name: edit-service-deployment
   labels:
-    app: completion-service
+    app: edit-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: completion-service
+      app: edit-service
   template:
     metadata:
       labels:
-        app: completion-service
+        app: edit-service
     spec:
       containers:
         - name: edit-service
-          image: hasitha2021/completion-service
+          image: hasitha2021/edit-service:prod-latest
           ports:
             - containerPort: 8000
           env:
@@ -49,7 +49,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: openai-microservices-secrets
-                  key: completion_database
+                  key: edit_database
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
@@ -60,12 +60,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: completion-service
+  name: edit-service
 spec:
   type: ClusterIP
   selector:
-    app: completion-service
+    app: edit-service
   ports:
-  - port: 21003
+  - port: 9292
     targetPort: 8000
     protocol: TCP

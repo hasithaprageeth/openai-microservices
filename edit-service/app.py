@@ -12,7 +12,7 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/')
+@app.route('/edit/health')
 def index():
     return 'Edit Service is running.'
 

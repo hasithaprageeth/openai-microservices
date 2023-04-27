@@ -1,11 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: openai-microservices-ingress
+  name: openai-microservices-ingress-prod
 spec:
   ingressClassName: nginx
   rules:
-  - host: openai-service-dev.com
+  - host: openai-service-prod.com
     http:
       paths:
         - path: /chat
@@ -14,25 +14,25 @@ spec:
             service:
               name: chat-service
               port:
-                number: 9091
+                number: 9291
         - path: /edit
           pathType: Prefix
           backend:
             service:
               name: edit-service
               port:
-                number: 9092
+                number: 9292
         - path: /completions
           pathType: Prefix
           backend:
             service:
               name: completions-service
               port:
-                number: 9093
+                number: 9293
         - path: /image
           pathType: Prefix
           backend:
             service:
               name: image-service
               port:
-                number: 9094
+                number: 9294

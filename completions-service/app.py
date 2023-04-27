@@ -12,7 +12,7 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/')
+@app.route('/completions/health')
 def index():
     return 'Completions Service is running.'
 
