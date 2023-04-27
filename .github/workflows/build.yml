@@ -60,7 +60,7 @@ jobs:
       run: pip install PyYAML
 
     - name: Run tests
-      uses: docker://python:3.9
+      uses: docker://python:3.10
       with:
         entrypoint: /bin/sh
         args: -c "pip install pytest && pytest ./tests"
