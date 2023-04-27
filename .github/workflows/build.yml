@@ -56,11 +56,8 @@ jobs:
         push: true
         tags: ${{ env.DOCKERHUB_USERNAME }}/image_service:${{ steps.extract_branch.outputs.branch }}-latest
 
-    - name: Install additional Python packages
-      run: pip install PyYAML
-
     - name: Run tests
       uses: docker://python:3.10
       with:
         entrypoint: /bin/sh
-        args: -c "pip install pytest && pytest ./tests"
+        args: -c "pip install pytest pyyaml && pytest ./tests"
