@@ -1,29 +1,53 @@
 name: Build and Push Docker Images
+
 on:
   push:
-    branches: [ develop, stage, master ]
+    branches:
+      - develop
+      - stage
+      - master
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Extract branch name
-        id: extract_branch
-        run: echo "::set-output name=branch::$(basename ${GITHUB_REF})"
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ env.DOCKERHUB_USERNAME }}
+        password: ${{ env.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Docker Images
-        run: |
-          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-          for SERVICE in service1 service2 service3; do
-            cd $SERVICE
-            docker build -t $DOCKERHUB_USERNAME/$SERVICE:${{ steps.extract_branch.outputs.branch }} .
-            docker push $DOCKERHUB_USERNAME/$SERVICE:${{ steps.extract_branch.outputs.branch }}
-            cd ..
-          done
+    - name: Build and push chat-service image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./chat-service
+        push: true
+        tags: ${{ env.DOCKERHUB_USERNAME }}/chat-service:${{ github.ref_slug }}-latest
+
+    - name: Build and push edit-service image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./edit-service
+        push: true
+        tags: ${{ env.DOCKERHUB_USERNAME }}/edit-service:${{ github.ref_slug }}-latest
+
+    - name: Build and push completions-service image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./completions-service
+        push: true
+        tags: ${{ env.DOCKERHUB_USERNAME }}/completions-service:${{ github.ref_slug }}-latest
+
+    - name: Build and push image-service image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./image-service
+        push: true
+        tags: ${{ env.DOCKERHUB_USERNAME }}/image-service:${{ github.ref_slug }}-latest
