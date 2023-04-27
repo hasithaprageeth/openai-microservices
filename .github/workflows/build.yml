@@ -5,7 +5,7 @@ on:
     branches:
       - develop
       - stage
-      - master
+      - main
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

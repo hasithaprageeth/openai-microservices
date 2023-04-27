@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: edit-service
-          image: hasitha2021/edit-service:prod-latest
+          image: hasitha2021/edit-service:main-latest
           ports:
             - containerPort: 8000
           env:
