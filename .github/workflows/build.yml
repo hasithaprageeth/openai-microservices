@@ -1,0 +1,29 @@
+name: Build and Push Docker Images
+on:
+  push:
+    branches: [ develop, stage, master ]
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract branch name
+        id: extract_branch
+        run: echo "::set-output name=branch::$(basename ${GITHUB_REF})"
+
+      - name: Build and Push Docker Images
+        run: |
+          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+          for SERVICE in service1 service2 service3; do
+            cd $SERVICE
+            docker build -t $DOCKERHUB_USERNAME/$SERVICE:${{ steps.extract_branch.outputs.branch }} .
+            docker push $DOCKERHUB_USERNAME/$SERVICE:${{ steps.extract_branch.outputs.branch }}
+            cd ..
+          done
