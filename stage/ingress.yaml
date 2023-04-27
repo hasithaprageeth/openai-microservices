@@ -33,7 +33,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: completion-service
+              name: completions-service
               port:
                 number: 9193
         - path: /image
