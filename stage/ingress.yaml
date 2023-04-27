@@ -12,34 +12,34 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: chat-service
+              name: chat-service-svc
               port:
                 number: 9191
         - path: /chat
           pathType: Prefix
           backend:
             service:
-              name: chat-service
+              name: chat-service-svc
               port:
                 number: 9191
         - path: /edit
           pathType: Prefix
           backend:
             service:
-              name: edit-service
+              name: edit-service-svc
               port:
                 number: 9192
         - path: /completions
           pathType: Prefix
           backend:
             service:
-              name: completions-service
+              name: completions-service-svc
               port:
                 number: 9193
         - path: /image
           pathType: Prefix
           backend:
             service:
-              name: image-service
+              name: image-service-svc
               port:
                 number: 9194
