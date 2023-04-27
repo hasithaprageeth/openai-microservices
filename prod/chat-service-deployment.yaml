@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chat-service
+  name: chat-service-deployment
   labels:
     app: chat-service
 spec:
@@ -60,7 +60,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: chat-service
+  name: chat-service-svc
 spec:
   type: ClusterIP
   selector:
