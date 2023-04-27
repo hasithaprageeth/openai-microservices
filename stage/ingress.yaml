@@ -1,11 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: openai-microservices-ingress
+  name: openai-microservices-ingress-stage
 spec:
   ingressClassName: nginx
   rules:
-  - host: openai-service-dev.com
+  - host: openai-service-stage.com
     http:
       paths:
         - path: /

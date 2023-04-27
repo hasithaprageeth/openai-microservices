@@ -12,7 +12,7 @@ spec:
     path: prod
   destination:
     server: https://kubernetes.default.svc
-    namespace: development
+    namespace: production
 
   syncPolicy:
     syncOptions:

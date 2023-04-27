@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openai-microservices-dev
+  name: openai-microservices-stage
   namespace: argocd
 spec:
   project: default
 
   source:
     repoURL: https://github.com/hasithaprageeth/openai-microservices
-    targetRevision: develop
-    path: dev
+    targetRevision: stage
+    path: stage
   destination:
     server: https://kubernetes.default.svc
-    namespace: development
+    namespace: staging
 
   syncPolicy:
     syncOptions:

@@ -27,18 +27,18 @@ spec:
                   key: openai-api-key
             - name: MYSQL_HOST
               valueFrom:
-                configMapRef:
-                  name: openai-microservices-configmap
+                secretKeyRef:
+                  name: openai-microservices-secrets
                   key: database_host
             - name: MYSQL_PORT
               valueFrom:
-                configMapRef:
-                  name: openai-microservices-configmap
+                secretKeyRef:
+                  name: openai-microservices-secrets
                   key: database_port
             - name: MYSQL_USER
               valueFrom:
-                configMapRef:
-                  name: openai-microservices-configmap
+                secretKeyRef:
+                  name: openai-microservices-secrets
                   key: database_user
             - name: MYSQL_PASSWORD
               valueFrom:
@@ -47,8 +47,8 @@ spec:
                   key: database_pwd
             - name: MYSQL_DATABASE
               valueFrom:
-                configMapRef:
-                  name: openai-microservices-configmap
+                secretKeyRef:
+                  name: openai-microservices-secrets
                   key: image_database
             - name: API_KEY
               valueFrom:
