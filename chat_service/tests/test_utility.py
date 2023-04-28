@@ -4,7 +4,7 @@ import yaml
 
 
 def setUpEnvVariables():
-    secrets_file = os.path.abspath('../dev/secrets.yaml')
+    secrets_file = os.path.abspath('../../dev/secrets.yaml')
 
     # Load the environment variables
     with open(secrets_file, 'r') as f:
