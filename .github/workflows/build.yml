@@ -56,8 +56,8 @@ jobs:
         push: true
         tags: ${{ env.DOCKERHUB_USERNAME }}/image_service:${{ steps.extract_branch.outputs.branch }}-latest
 
-    - name: Run tests
-      uses: docker://python:3.10
+    - name: Build tests image
+      uses: docker/build-push-action@v2
       with:
-        entrypoint: /bin/sh
-        args: -c "pip install pytest pyyaml && pytest ./tests"
+        context: ./tests
+        tags: ${{ env.DOCKERHUB_USERNAME }}/tests:${{ steps.extract_branch.outputs.branch }}-latest
