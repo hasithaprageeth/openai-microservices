@@ -1,4 +1,4 @@
-name: chat-service tests
+name: edit-service tests
 
 on:
   push:
