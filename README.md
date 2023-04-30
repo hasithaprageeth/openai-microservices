@@ -14,7 +14,7 @@ This is a repository for openai microservices
 * **Images**
   * Given a prompt and/or an input image, the model will generate a new image.
 
-[![chat-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml/badge.svg?branch=develop)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml)
+[![chat-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml)
 
 [![completions-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-build.yml)
 
