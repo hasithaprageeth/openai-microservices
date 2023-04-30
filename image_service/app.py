@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from config import SQLConfig
-from authentication import requires_auth
-from openai_completions_client import get_completion_response
-from models import db
+from image_service.config import SQLConfig
+from image_service.authentication import requires_auth
+from image_service.openai_image_client import get_image_response
+from image_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)
@@ -12,23 +12,24 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/completions/health')
+@app.route('/image/health')
 def index():
-    return 'Completions Service is running.'
+    return 'Image Service is running.'
 
 
-@app.route('/completions', methods=['POST'])
+@app.route('/image', methods=['POST'])
 @requires_auth
-def chat():
+def image():
     data = request.get_json()
     try:
         if not data.get('prompt'):
             raise ValueError("Please provide a valid value for 'prompt' parameter. "
                              "The value should not be null or empty.")
+        prompt = data.get('prompt')
 
         # create a new database session
         with db.session() as session:
-            response = get_completion_response(data['prompt'], session)
+            response = get_image_response(prompt, session)
 
         return jsonify(response.__dict__)
     except ValueError as e:
