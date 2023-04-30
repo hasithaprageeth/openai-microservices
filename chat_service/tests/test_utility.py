@@ -39,3 +39,4 @@ def setUpEnvVariables():
 def getApiKey():
     encoded_value = 'eyJhbGciOiJIUzI1NiJ9.e30.5sMLJgsil83Q8JJEtLYJxJp6MkRqQofMUhoDcaRfv74'
     return encoded_value
+

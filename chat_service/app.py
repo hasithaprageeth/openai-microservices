@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from config import SQLConfig
-from authentication import requires_auth
-from openai_chat_client import get_chat_response
-from models import db
+from chat_service.config import SQLConfig
+from chat_service.authentication import requires_auth
+from chat_service.openai_chat_client import get_chat_response
+from chat_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)
@@ -12,7 +12,7 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/')
+@app.route('/chat/health')
 def chat_health():
     return 'Chat Service is running.'
 

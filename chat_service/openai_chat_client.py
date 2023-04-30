@@ -1,7 +1,7 @@
 import openai
-import config
-from chat_response import ChatResponse
-from models import Chat
+from chat_service import config
+from chat_service.chat_response import ChatResponse
+from chat_service.models import Chat
 
 openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
 model_engine = config.MODEL_ENGINE
