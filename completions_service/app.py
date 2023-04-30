@@ -13,13 +13,13 @@ with app.app_context():
 
 
 @app.route('/completions/health')
-def index():
+def completions_health():
     return 'Completions Service is running.'
 
 
 @app.route('/completions', methods=['POST'])
 @requires_auth
-def chat():
+def completions():
     data = request.get_json()
     try:
         if not data.get('prompt'):

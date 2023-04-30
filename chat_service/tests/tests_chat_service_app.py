@@ -5,10 +5,6 @@ import test_utility
 from unittest.mock import patch
 from chat_service.chat_response import ChatResponse
 
-
-def test_hello_world():
-    assert "hello world" == "hello world"
-
 class ChatServiceTest(unittest.TestCase):
     def setUp(self):
         test_utility.setUpEnvVariables()

@@ -13,7 +13,7 @@ with app.app_context():
 
 
 @app.route('/')
-def index():
+def chat_health():
     return 'Chat Service is running.'
 
 

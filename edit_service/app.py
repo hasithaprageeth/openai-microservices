@@ -13,7 +13,7 @@ with app.app_context():
 
 
 @app.route('/edit/health')
-def index():
+def edit_health():
     return 'Edit Service is running.'
 
 

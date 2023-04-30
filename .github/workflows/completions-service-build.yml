@@ -6,6 +6,11 @@ on:
       - develop
       - stage
       - main
+  pull_request:
+    branches:
+      - develop
+      - stage
+      - main
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
