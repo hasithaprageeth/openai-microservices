@@ -1,7 +1,7 @@
 import unittest
 import json
 import os
-import test_utility
+from chat_service.tests import test_utility
 from unittest.mock import patch
 from chat_service.chat_response import ChatResponse
 
