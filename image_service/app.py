@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from config import SQLConfig
-from authentication import requires_auth
-from openai_image_client import get_image_response
-from models import db
+from image_service.config import SQLConfig
+from image_service.authentication import requires_auth
+from image_service.openai_image_client import get_image_response
+from image_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)

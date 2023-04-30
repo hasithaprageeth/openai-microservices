@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from config import SQLConfig
-from authentication import requires_auth
-from openai_edit_client import get_edit_response
-from models import db
+from edit_service.config import SQLConfig
+from edit_service.authentication import requires_auth
+from edit_service.openai_edit_client import get_edit_response
+from edit_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)

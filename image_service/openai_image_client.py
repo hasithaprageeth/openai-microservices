@@ -1,7 +1,7 @@
 import openai
-import config
-from image_response import ImageResponse
-from models import Image
+from image_service import config
+from image_service.image_response import ImageResponse
+from image_service.models import Image
 
 openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
 

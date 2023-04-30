@@ -1,8 +1,8 @@
 import unittest
 import json
 import os
-import test_utility
 from unittest.mock import patch
+from image_service.tests import test_utility
 from image_service.image_response import ImageResponse
 
 

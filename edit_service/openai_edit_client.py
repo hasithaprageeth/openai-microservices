@@ -1,7 +1,7 @@
 import openai
-import config
-from edit_response import EditResponse
-from models import Edit
+from edit_service import config
+from edit_service.edit_response import EditResponse
+from edit_service.models import Edit
 
 openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
 model_engine = config.MODEL_ENGINE

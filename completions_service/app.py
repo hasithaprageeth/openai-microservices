@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from config import SQLConfig
-from authentication import requires_auth
-from openai_completions_client import get_completion_response
-from models import db
+from completions_service.config import SQLConfig
+from completions_service.authentication import requires_auth
+from completions_service.openai_completions_client import get_completion_response
+from completions_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)

@@ -1,8 +1,8 @@
 import unittest
 import json
 import os
-import test_utility
 from unittest.mock import patch
+from completions_service.tests import test_utility
 from completions_service.completion_response import CompletionResponse
 
 
@@ -11,7 +11,7 @@ class CompletionsServiceTest(unittest.TestCase):
         test_utility.setUpEnvVariables()
         os.environ["MYSQL_DATABASE"] = os.getenv('COMPLETION_MYSQL_DATABASE')
 
-        from chat_service.app import app
+        from completions_service.app import app
         app.testing = True
         self.app = app.test_client()
 

@@ -1,8 +1,8 @@
 import unittest
 import json
 import os
-import test_utility
 from unittest.mock import patch
+from edit_service.tests import test_utility
 from edit_service.edit_response import EditResponse
 
 
