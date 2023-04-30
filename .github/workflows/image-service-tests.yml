@@ -1,4 +1,4 @@
-name: chat-service tests
+name: image-service tests
 
 on:
   push:
@@ -29,9 +29,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        pip install -r chat_service/requirements.txt
-        pip install -r edit_service/requirements.txt
-        pip install -r completions_service/requirements.txt
         pip install -r image_service/requirements.txt
     - name: Lint with flake8
       run: |
@@ -41,4 +38,5 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+          cd image_service/tests
           pytest
