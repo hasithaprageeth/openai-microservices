@@ -1,5 +1,5 @@
 import jwt
-import config
+from image_service import config
 from datetime import datetime, timedelta
 from flask import request, jsonify
 from functools import wraps

@@ -1,7 +1,7 @@
 import openai
-import config
-from completion_response import CompletionResponse
-from models import Completion
+from completions_service import config
+from completions_service.completion_response import CompletionResponse
+from completions_service.models import Completion
 
 openai.api_key = config.OPENAI_API_KEY.replace("\r\n", "")
 model_engine = config.MODEL_ENGINE
