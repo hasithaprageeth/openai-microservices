@@ -63,4 +63,4 @@ jobs:
       with:
         context: ./chat_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/chat_service:${{ steps.extract_branch.outputs.branch }}-1_0
+        tags: ${{ env.DOCKERHUB_USERNAME }}/chat_service:${{ steps.extract_branch.outputs.branch }}-latest
