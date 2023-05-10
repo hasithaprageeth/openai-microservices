@@ -63,4 +63,4 @@ jobs:
       with:
         context: ./edit_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/edit_service:${{ steps.extract_branch.outputs.branch }}-latest
+        tags: ${{ env.DOCKERHUB_USERNAME }}/edit_service:${{ steps.extract_branch.outputs.branch }}-1.0

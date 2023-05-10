@@ -63,4 +63,4 @@ jobs:
       with:
         context: ./completions_service
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/completions_service:${{ steps.extract_branch.outputs.branch }}-latest
+        tags: ${{ env.DOCKERHUB_USERNAME }}/completions_service:${{ steps.extract_branch.outputs.branch }}-1.0

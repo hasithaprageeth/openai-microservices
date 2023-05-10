@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: edit-service
-          image: hasitha2021/image-service:develop-latest
+          image: hasitha2021/image-service:develop-1.0
           ports:
             - containerPort: 8000
           env:
@@ -66,6 +66,6 @@ spec:
   selector:
     app: image-service
   ports:
-  - port: 9094
+  - port: 6064
     targetPort: 8000
     protocol: TCP

@@ -14,25 +14,25 @@ spec:
             service:
               name: chat-service-svc
               port:
-                number: 9091
+                number: 6061
         - path: /edit
           pathType: Prefix
           backend:
             service:
               name: edit-service-svc
               port:
-                number: 9092
+                number: 6062
         - path: /completions
           pathType: Prefix
           backend:
             service:
               name: completions-service-svc
               port:
-                number: 9093
+                number: 6063
         - path: /image
           pathType: Prefix
           backend:
             service:
               name: image-service-svc
               port:
-                number: 9094
+                number: 6064

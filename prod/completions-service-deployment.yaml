@@ -66,6 +66,6 @@ spec:
   selector:
     app: completions-service
   ports:
-  - port: 9293
+  - port: 6263
     targetPort: 8000
     protocol: TCP
