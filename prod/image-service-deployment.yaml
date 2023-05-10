@@ -66,6 +66,6 @@ spec:
   selector:
     app: image-service
   ports:
-  - port: 9294
+  - port: 6264
     targetPort: 8000
     protocol: TCP
