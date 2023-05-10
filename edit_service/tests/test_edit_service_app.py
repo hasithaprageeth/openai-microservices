@@ -18,7 +18,7 @@ class EditServiceTest(unittest.TestCase):
     def test_edit_health(self):
         response = self.app.get('/edit/health')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data.decode('utf-8'), 'Edit Service is running.')
+        self.assertEqual(response.data.decode('utf-8'), 'Edit Service is running. . This is a new change')
 
     def test_edit_without_auth(self):
         data = {
