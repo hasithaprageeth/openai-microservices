@@ -8,38 +8,31 @@ spec:
   - host: openai-service-stage.com
     http:
       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: chat-service-svc
-              port:
-                number: 9191
         - path: /chat
           pathType: Prefix
           backend:
             service:
               name: chat-service-svc
               port:
-                number: 9191
+                number: 6161
         - path: /edit
           pathType: Prefix
           backend:
             service:
               name: edit-service-svc
               port:
-                number: 9192
+                number: 6162
         - path: /completions
           pathType: Prefix
           backend:
             service:
               name: completions-service-svc
               port:
-                number: 9193
+                number: 6163
         - path: /image
           pathType: Prefix
           backend:
             service:
               name: image-service-svc
               port:
-                number: 9194
+                number: 6164

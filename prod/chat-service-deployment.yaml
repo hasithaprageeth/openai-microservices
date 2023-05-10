@@ -66,6 +66,6 @@ spec:
   selector:
     app: chat-service
   ports:
-  - port: 9291
+  - port: 6261
     targetPort: 8000
     protocol: TCP

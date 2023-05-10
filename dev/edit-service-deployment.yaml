@@ -66,6 +66,6 @@ spec:
   selector:
     app: edit-service
   ports:
-  - port: 9092
+  - port: 6062
     targetPort: 8000
     protocol: TCP

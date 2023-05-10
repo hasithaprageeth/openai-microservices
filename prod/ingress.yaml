@@ -8,38 +8,31 @@ spec:
   - host: openai-service-prod.com
     http:
       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: chat-service-svc
-              port:
-                number: 9291
         - path: /chat
           pathType: Prefix
           backend:
             service:
               name: chat-service-svc
               port:
-                number: 9291
+                number: 6261
         - path: /edit
           pathType: Prefix
           backend:
             service:
               name: edit-service-svc
               port:
-                number: 9292
+                number: 6262
         - path: /completions
           pathType: Prefix
           backend:
             service:
               name: completions-service-svc
               port:
-                number: 9293
+                number: 6263
         - path: /image
           pathType: Prefix
           backend:
             service:
               name: image-service-svc
               port:
-                number: 9294
+                number: 6264
