@@ -14,7 +14,7 @@ with app.app_context():
 
 @app.route('/edit/health')
 def edit_health():
-    return 'Edit Service is running.'
+    return 'Edit Service is running. This is a new change'
 
 
 @app.route('/edit', methods=['POST'])
