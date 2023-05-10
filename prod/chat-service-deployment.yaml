@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: chat-service
-          image: hasitha2021/chat-service:main-1.0
+          image: hasitha2021/chat-service:main-latest
           ports:
             - containerPort: 8000
           env:
