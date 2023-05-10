@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from prometheus_flask_exporter import PrometheusMetrics
 from chat_service.config import SQLConfig
 from chat_service.authentication import requires_auth
 from chat_service.openai_chat_client import get_chat_response
@@ -6,6 +7,7 @@ from chat_service.models import db
 
 app = Flask(__name__)
 app.config.from_object(SQLConfig)
+metrics = PrometheusMetrics(app)
 
 with app.app_context():
     db.init_app(app)
@@ -16,6 +18,9 @@ with app.app_context():
 def chat_health():
     return 'Chat Service is running.'
 
+@app.route('/metrics')
+def metrics():
+    return metrics.export()
 
 @app.route('/chat', methods=['POST'])
 @requires_auth

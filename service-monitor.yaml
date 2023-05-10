@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: chat-service
+  labels:
+    env: development
+spec:
+  selector:
+    matchLabels:
+      app: chat-service
+  endpoints:
+  - port: web
