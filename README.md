@@ -14,11 +14,10 @@ This is a repository for openai microservices
 * **Images**
   * Given a prompt and/or an input image, the model will generate a new image.
 
+[![chat-service workflow](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-workflow.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-workflow.yml)
 
-[![chat-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/chat-service-build.yml)
+[![completions-service workflow](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-workflow.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-workflow.yml)
 
-[![completions-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/completions-service-build.yml)
+[![edit-service workflow](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/edit-service-workflow.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/edit-service-workflow.yml)
 
-[![edit-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/edit-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/edit-service-build.yml)
-
-[![image-service build and push](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/image-service-build.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/image-service-build.yml)
+[![image-service workflow](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/image-service-workflow.yml/badge.svg)](https://github.com/hasithaprageeth/openai-microservices/actions/workflows/image-service-workflow.yml)
